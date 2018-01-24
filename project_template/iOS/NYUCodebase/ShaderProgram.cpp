@@ -4,9 +4,9 @@
 ShaderProgram::ShaderProgram(const char *vertexShaderFile, const char *fragmentShaderFile) {
     
     // create the vertex shader
-    vertexShader = loadShaderFromFile(vertexShaderFile, GL_VERTEX_SHADER);
+    vertexShader = LoadShaderFromFile(vertexShaderFile, GL_VERTEX_SHADER);
     // create the fragment shader
-    fragmentShader = loadShaderFromFile(fragmentShaderFile, GL_FRAGMENT_SHADER);
+    fragmentShader = LoadShaderFromFile(fragmentShaderFile, GL_FRAGMENT_SHADER);
     
     // Create the final shader program from our vertex and fragment shaders
     programID = glCreateProgram();
@@ -26,6 +26,7 @@ ShaderProgram::ShaderProgram(const char *vertexShaderFile, const char *fragmentS
     
     positionAttribute = glGetAttribLocation(programID, "position");
     texCoordAttribute = glGetAttribLocation(programID, "texCoord");
+    
 }
 
 ShaderProgram::~ShaderProgram() {
@@ -34,7 +35,7 @@ ShaderProgram::~ShaderProgram() {
     glDeleteShader(fragmentShader);
 }
 
-GLuint ShaderProgram::loadShaderFromFile(const std::string &shaderFile, GLenum type) {
+GLuint ShaderProgram::LoadShaderFromFile(const std::string &shaderFile, GLenum type) {
     //Open a file stream with the file name
     std::ifstream infile(shaderFile);
     
@@ -47,11 +48,10 @@ GLuint ShaderProgram::loadShaderFromFile(const std::string &shaderFile, GLenum t
     buffer << infile.rdbuf();
     
     // Load the shader from the contents of the file
-    std::string vertexShaderString = buffer.str();
     return loadShaderFromString(buffer.str(), type);
 }
 
-GLuint ShaderProgram::loadShaderFromString(const std::string &shaderContents, GLenum type) {
+GLuint ShaderProgram::LoadShaderFromString(const std::string &shaderContents, GLenum type) {
     
     
     // Create a shader of specified type
@@ -80,17 +80,17 @@ GLuint ShaderProgram::loadShaderFromString(const std::string &shaderContents, GL
     return shaderID;
 }
 
-void ShaderProgram::setViewMatrix(const Matrix &matrix) {
+void ShaderProgram::SetViewMatrix(const Matrix &matrix) {
     glUseProgram(programID);
     glUniformMatrix4fv(viewMatrixUniform, 1, GL_FALSE, matrix.ml);
 }
 
-void ShaderProgram::setModelMatrix(const Matrix &matrix) {
+void ShaderProgram::SetModelMatrix(const Matrix &matrix) {
     glUseProgram(programID);
     glUniformMatrix4fv(modelMatrixUniform, 1, GL_FALSE, matrix.ml);
 }
 
-void ShaderProgram::setProjectionMatrix(const Matrix &matrix) {
+void ShaderProgram::SetProjectionMatrix(const Matrix &matrix) {
     glUseProgram(programID);
     glUniformMatrix4fv(projectionMatrixUniform, 1, GL_FALSE, matrix.ml);    
 }
