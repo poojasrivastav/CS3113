@@ -1,7 +1,7 @@
 
 #include "ShaderProgram.h"
 
-ShaderProgram::ShaderProgram(const char *vertexShaderFile, const char *fragmentShaderFile) {
+ShaderProgram::Load(const char *vertexShaderFile, const char *fragmentShaderFile) {
     
     // create the vertex shader
     vertexShader = LoadShaderFromFile(vertexShaderFile, GL_VERTEX_SHADER);
@@ -17,7 +17,7 @@ ShaderProgram::ShaderProgram(const char *vertexShaderFile, const char *fragmentS
     GLint linkSuccess;
     glGetProgramiv(programID, GL_LINK_STATUS, &linkSuccess);
     if(linkSuccess == GL_FALSE) {
-        printf("Error linking shader program!\n");
+	printf("Error linking shader program!\n");
     }
     
     modelMatrixUniform = glGetUniformLocation(programID, "modelMatrix");
@@ -29,7 +29,7 @@ ShaderProgram::ShaderProgram(const char *vertexShaderFile, const char *fragmentS
     
 }
 
-ShaderProgram::~ShaderProgram() {
+ShaderProgram::Cleanup() {
     glDeleteProgram(programID);
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);

@@ -12,9 +12,9 @@
 
 class ShaderProgram {
     public:
-        ShaderProgram(const char *vertexShaderFile, const char *fragmentShaderFile);
-        ~ShaderProgram();
-    
+	void Load(const char *vertexShaderFile, const char *fragmentShaderFile);
+	void Cleanup();   
+
         void SetModelMatrix(const Matrix &matrix);
         void SetProjectionMatrix(const Matrix &matrix);
         void SetViewMatrix(const Matrix &matrix);
