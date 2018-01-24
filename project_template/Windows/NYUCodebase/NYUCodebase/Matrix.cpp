@@ -136,12 +136,12 @@ void Matrix::SetPosition(float x, float y, float z) {
 
 void Matrix::Translate(float x, float y, float z) {
     Matrix transMatrix;
-    transMatrix.setPosition(x, y, z);
+    transMatrix.SetPosition(x, y, z);
     (*this) = transMatrix * (*this);
 }
 
 void Matrix::SetRotation(float rotation) {
-    setRoll(rotation);
+    SetRoll(rotation);
 }
 
 void Matrix::SetRoll(float roll) {
@@ -157,7 +157,7 @@ void Matrix::Rotate(float rotation) {
 
 void Matrix::Roll(float roll) {
     Matrix rollMatrix;
-    rollMatrix.setRoll(roll);
+    rollMatrix.SetRoll(roll);
     (*this) = rollMatrix * (*this);
 }
 
@@ -177,13 +177,13 @@ void Matrix::SetYaw(float yaw) {
 
 void Matrix::Pitch(float pitch) {
     Matrix pitchMatrix;
-    pitchMatrix.setPitch(pitch);
+    pitchMatrix.SetPitch(pitch);
     (*this) = pitchMatrix * (*this);
 }
 
 void Matrix::Yaw(float yaw) {
     Matrix yawMatrix;
-    yawMatrix.setYaw(yaw);
+    yawMatrix.SetYaw(yaw);
     (*this) = yawMatrix * (*this);
 }
 
@@ -195,7 +195,7 @@ void Matrix::SetScale(float x, float y, float z) {
 
 void Matrix::Scale(float x, float y, float z) {
     Matrix scaleMatrix;
-    scaleMatrix.setScale(x, y, z);
+    scaleMatrix.SetScale(x, y, z);
     (*this) = scaleMatrix * (*this);
 }
 

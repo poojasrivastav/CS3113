@@ -1,7 +1,7 @@
 
 #include "ShaderProgram.h"
 
-ShaderProgram::Load(const char *vertexShaderFile, const char *fragmentShaderFile) {
+void ShaderProgram::Load(const char *vertexShaderFile, const char *fragmentShaderFile) {
     
     // create the vertex shader
     vertexShader = LoadShaderFromFile(vertexShaderFile, GL_VERTEX_SHADER);
@@ -29,7 +29,7 @@ ShaderProgram::Load(const char *vertexShaderFile, const char *fragmentShaderFile
     
 }
 
-ShaderProgram::Cleanup() {
+void ShaderProgram::Cleanup() {
     glDeleteProgram(programID);
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
@@ -48,7 +48,7 @@ GLuint ShaderProgram::LoadShaderFromFile(const std::string &shaderFile, GLenum t
     buffer << infile.rdbuf();
     
     // Load the shader from the contents of the file
-    return loadShaderFromString(buffer.str(), type);
+    return LoadShaderFromString(buffer.str(), type);
 }
 
 GLuint ShaderProgram::LoadShaderFromString(const std::string &shaderContents, GLenum type) {
